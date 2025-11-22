@@ -20,7 +20,7 @@ export default function Home() {
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {/* TRL Calculator Card */}
           <Link
-            href="#"
+            href="/trl"
             className="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-t-4 border-gold overflow-hidden"
           >
             <div className="p-8">
