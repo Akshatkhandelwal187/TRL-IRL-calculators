@@ -1,31 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --bits-blue: #003366;
-  --bits-gold: #D4AF37;
+  /* Brand Colors */
+  --primary: #2B2B88;       /* BITS Navy */
+  --secondary: #00C4CC;     /* Innovation Teal */
+  --accent: #B78A2D;        /* Action Gold */
+  --light: #F5F7FA;         /* Light Grey Background */
+  --dark: #1A1A2E;          /* Deep Text */
+  --white: #FFFFFF;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Map CSS variables to Tailwind utilities */
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-light: var(--light);
+  --color-dark: var(--dark);
+  --color-white: var(--white);
 
-  --color-deep-blue: var(--bits-blue);
-  --color-gold: var(--bits-gold);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Map Fonts */
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-montserrat);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--light);
+  color: var(--dark);
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
 }

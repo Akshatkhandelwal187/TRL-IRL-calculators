@@ -66,11 +66,11 @@ export default function QuestionWizard({
   if (isFinished) {
     return (
       <div className="flex flex-col items-center justify-center p-8 bg-white rounded-xl shadow-lg border border-gray-100 max-w-2xl mx-auto">
-        <h2 className="text-2xl font-bold text-deep-blue mb-4">Assessment Complete</h2>
+        <h2 className="text-2xl font-bold text-primary mb-4">Assessment Complete</h2>
         <p className="text-gray-600 mb-6">Processing results...</p>
         <button
             onClick={handleRestart}
-            className="px-6 py-2 bg-deep-blue text-white rounded-lg hover:bg-opacity-90 transition-colors"
+            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-opacity-90 transition-colors"
         >
             Restart
         </button>
@@ -89,16 +89,16 @@ export default function QuestionWizard({
         </div>
         <div className="h-4 w-full bg-gray-200 rounded-full overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-deep-blue to-gold transition-all duration-500 ease-out"
+            className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-500 ease-out"
             style={{ width: `${(currentLevel / 9) * 100}%` }}
           />
         </div>
       </div>
 
       {/* Question Card */}
-      <div className="bg-white rounded-xl shadow-lg border-t-4 border-gold p-8 min-h-[300px] flex flex-col justify-between">
+      <div className="bg-white rounded-xl shadow-lg border-t-4 border-accent p-8 min-h-[300px] flex flex-col justify-between">
         <div>
-          <span className="inline-block px-3 py-1 bg-blue-100 text-deep-blue text-xs font-bold rounded-full mb-4">
+          <span className="inline-block px-3 py-1 bg-blue-100 text-primary text-xs font-bold rounded-full mb-4">
             QUESTION {currentQuestionIndex + 1} OF {questions.length}
           </span>
           <h3 className="text-2xl font-bold text-gray-800 mb-6 leading-relaxed">
@@ -109,7 +109,7 @@ export default function QuestionWizard({
         <div className="flex gap-4 pt-4">
           <button
             onClick={() => handleAnswer(true)}
-            className="flex-1 py-3 px-6 bg-deep-blue text-white font-semibold rounded-lg hover:bg-opacity-90 transition-transform transform hover:scale-105 shadow-md"
+            className="flex-1 py-3 px-6 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-transform transform hover:scale-105 shadow-md"
           >
             Yes
           </button>

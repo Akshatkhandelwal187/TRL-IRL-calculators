@@ -53,21 +53,21 @@ export default function TRLCalculator() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-       {/* Header */}
-       <header className="bg-deep-blue text-white py-6 px-6 shadow-md">
-        <div className="container mx-auto flex justify-between items-center">
-            <Link href="/" className="text-xl font-bold hover:text-gold transition-colors">
-                BITS Pilani TEC
-            </Link>
-            <h1 className="text-lg font-light">TRL Calculator</h1>
-        </div>
-      </header>
+       {/* Header - Removed in favor of global Navbar, or customized here if necessary.
+           Keeping the layout structure but using new classes.
+           Since RootLayout has Navbar, we might not need this header, but let's keep it context-specific if needed or remove it.
+           For now, I will align it with the new theme colors.
+       */}
+       {/* If we are using the global layout, we already have a Navbar.
+           However, the previous implementation was a full page.
+           Let's rely on the RootLayout's Navbar and just provide the Main content.
+       */}
 
       <main className="flex-grow container mx-auto px-6 py-12">
         {finalTRL === null ? (
             <>
                 <div className="text-center mb-10">
-                    <h2 className="text-3xl font-bold text-deep-blue mb-2">Technology Readiness Level Assessment</h2>
+                    <h2 className="text-3xl font-bold text-primary mb-2">Technology Readiness Level Assessment</h2>
                     <p className="text-gray-600">Answer the following questions to determine your technology's maturity.</p>
                 </div>
                 <QuestionWizard
@@ -77,11 +77,11 @@ export default function TRLCalculator() {
                 />
             </>
         ) : (
-            <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg border-t-4 border-gold p-10 text-center">
-                <h2 className="text-4xl font-bold text-deep-blue mb-6">Assessment Complete</h2>
+            <div className="max-w-2xl mx-auto bg-white rounded-xl shadow-lg border-t-4 border-accent p-10 text-center">
+                <h2 className="text-4xl font-bold text-primary mb-6">Assessment Complete</h2>
                 <div className="mb-8">
                     <p className="text-xl text-gray-600 mb-2">Your Result</p>
-                    <div className="text-6xl font-extrabold text-gold">TRL {finalTRL}</div>
+                    <div className="text-6xl font-extrabold text-accent">TRL {finalTRL}</div>
                 </div>
                 <p className="text-gray-600 mb-8">
                     Based on your responses, your technology has reached Readiness Level {finalTRL}.
@@ -89,7 +89,7 @@ export default function TRLCalculator() {
                 </p>
                 <button
                     onClick={() => setFinalTRL(null)}
-                    className="px-8 py-3 bg-deep-blue text-white font-semibold rounded-lg hover:bg-opacity-90 transition-colors"
+                    className="px-8 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-opacity-90 transition-colors"
                 >
                     Start New Assessment
                 </button>
