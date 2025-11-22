@@ -11,11 +11,13 @@ export interface Question {
 interface QuestionWizardProps {
   questions: Question[];
   onComplete?: (answers: Record<string, boolean>) => void;
+  stopOnNo?: boolean;
 }
 
 export default function QuestionWizard({
   questions,
   onComplete,
+  stopOnNo = false,
 }: QuestionWizardProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, boolean>>({});
@@ -29,11 +31,20 @@ export default function QuestionWizard({
     const newAnswers = { ...answers, [currentQuestion.id]: answer };
     setAnswers(newAnswers);
 
+    // If stopOnNo is enabled and the answer is "No", stop the assessment immediately
+    if (stopOnNo && answer === false) {
+      setCurrentQuestionIndex(questions.length); // Force finish
+      if (onComplete) {
+        onComplete(newAnswers);
+      }
+      return;
+    }
+
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      // Finished
-      setCurrentQuestionIndex(questions.length); // Move past the last question
+      // Finished normally (last question answered)
+      setCurrentQuestionIndex(questions.length);
       if (onComplete) {
         onComplete(newAnswers);
       }
@@ -50,19 +61,13 @@ export default function QuestionWizard({
   }
 
   // Calculate progress based on Level (1-9)
-  // We assume questions are sorted by level or we just look at the current question's level.
-  // If finished, we can assume level 9 or completed.
   const currentLevel = isFinished ? 9 : currentQuestion.level;
-
-  // Progress percentage for visual bar (Level 1 to 9)
-  // (Current Level / 9) * 100
-  const progressPercentage = (currentLevel / 9) * 100;
 
   if (isFinished) {
     return (
       <div className="flex flex-col items-center justify-center p-8 bg-white rounded-xl shadow-lg border border-gray-100 max-w-2xl mx-auto">
         <h2 className="text-2xl font-bold text-deep-blue mb-4">Assessment Complete</h2>
-        <p className="text-gray-600 mb-6">Thank you for completing the assessment.</p>
+        <p className="text-gray-600 mb-6">Processing results...</p>
         <button
             onClick={handleRestart}
             className="px-6 py-2 bg-deep-blue text-white rounded-lg hover:bg-opacity-90 transition-colors"
